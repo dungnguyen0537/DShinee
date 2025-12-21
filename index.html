@@ -290,10 +290,30 @@
         </div>
     </div>
 
+    <script src="https://www.youtube.com/iframe_api"></script>
     <script src="database.js"></script>
 
     <script>
         const YOUTUBE_VIDEO_ID = "9BQdGlMAw-k";
+        let ytPlayer; // Biến lưu trữ player YouTube
+
+        // Hàm gọi tự động bởi YouTube API khi sẵn sàng
+        function onYouTubeIframeAPIReady() {
+            ytPlayer = new YT.Player('ytPlayer', {
+                events: {
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // Theo dõi trạng thái video để dừng/phát nhạc nền
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING) {
+                pauseSong(); // Nếu video đang phát -> dừng nhạc nền
+            } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
+                playSong(); // Nếu video dừng hoặc hết -> phát lại nhạc nền
+            }
+        }
 
         function openKeyModal() {
             document.getElementById('modalOverlay').style.display = 'flex';
@@ -332,13 +352,21 @@
         function toggleVideo() {
             const videoWrapper = document.getElementById('videoContainer');
             const player = document.getElementById('ytPlayer');
+            
             if (videoWrapper.style.display === 'block') {
                 videoWrapper.style.display = 'none';
                 player.src = "";
+                playSong(); // Đóng video thì phát lại nhạc nền
             } else {
                 videoWrapper.style.display = 'block';
-                player.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1`;
-                setTimeout(() => { videoWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+                // Thêm tham số enablejsapi=1 để API có thể kết nối
+                player.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&enablejsapi=1`;
+                
+                // Khởi tạo lại kết nối API với iframe mới
+                setTimeout(() => {
+                    onYouTubeIframeAPIReady();
+                    videoWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
             }
         }
 
@@ -352,6 +380,7 @@
             setTimeout(() => { ripple.remove(); }, 600);
         });
 
+        // Music Player Logic
         const playlist = [
             { title: "Không Buông Drill", artist: "Hngle x Ari", src: "https://files.catbox.moe/9adi9p.mp3" },
             { title: "Em", artist: "Binz", src: "https://files.catbox.moe/vs0z1h.mp3" },
@@ -391,6 +420,10 @@
         }
 
         function playSong() {
+            // Chỉ phát nhạc nếu video YouTube KHÔNG đang chạy
+            if (ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+                if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) return;
+            }
             isPlaying = true;
             audio.play().catch(() => {});
             disk.style.animationPlayState = 'running';
@@ -441,6 +474,7 @@
             document.addEventListener('click', unlock);
         });
 
+        // Snow effect
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
