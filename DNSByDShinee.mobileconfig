@@ -8,48 +8,48 @@
             <key>DNSSettings</key>
             <dict>
                 <key>DNSProtocol</key>
-                <string>HTTPS</string> [cite: 2]
+                <string>HTTPS</string>
                 <key>ServerURL</key>
-                <string>https://dns.nextdns.io/6a81c3</string> [cite: 2]
+                <string>https://dns.nextdns.io/6a81c3</string>
             </dict>
             <key>PayloadDescription</key>
             <string>Chức năng: 
             ✔ Locket Gold 
             ✔ Spotify No Ads 
             ✔ Block Ads Web/App 
-            _DShinee_</string> [cite: 3]
+            _DShinee_</string>
             <key>PayloadDisplayName</key>
-            <string>DShinee DNS | 2025</string> [cite: 3]
+            <string>DShinee DNS | 2025</string>
             <key>PayloadIdentifier</key>
-            <string>com.camsitup.controld.dnsprofile.6a81c3</string> [cite: 4]
+            <string>com.camsitup.controld.dnsprofile.6a81c3</string>
             <key>PayloadOrganization</key>
-            <string>Block Ads</string> [cite: 3]
+            <string>Block Ads</string>
             <key>PayloadType</key>
-            <string>com.apple.dnsSettings.managed</string> [cite: 4]
+            <string>com.apple.dnsSettings.managed</string>
             <key>PayloadUUID</key>
-            <string>0E3B4D2E-4C3F-4B2D-BAE6-8E1F6E7A2F44</string> [cite: 4]
+            <string>0E3B4D2E-4C3F-4B2D-BAE6-8E1F6E7A2F44</string>
             <key>PayloadVersion</key>
-            <integer>1</integer> [cite: 4]
+            <integer>1</integer>
         </dict>
     </array>
     <key>PayloadDescription</key>
     <string>Chức năng: 
     ✔ Locket Gold 
     ✔ Spotify No Ads 
-    ✔ Block Ads Web/App</string> [cite: 8]
+    ✔ Block Ads Web/App</string>
     <key>PayloadDisplayName</key>
-    <string>DShinee - DNS</string> [cite: 8]
+    <string>DShinee - DNS</string>
     <key>PayloadIdentifier</key>
-    <string>com.camsitup.profile.controld.doh.dual</string> [cite: 8]
+    <string>com.camsitup.profile.controld.doh.dual</string>
     <key>PayloadOrganization</key>
-    <string>Custom By DShinee - Version v1.0</string> 
+    <string>Custom By DShinee - Version v1.0</string>
     <key>PayloadRemovalDisallowed</key>
-    <false/> [cite: 8]
+    <false/>
     <key>PayloadType</key>
-    <string>Configuration</string> [cite: 8]
+    <string>Configuration</string>
     <key>PayloadUUID</key>
-    <string>5A9E1F7C-01B3-4E90-BB7E-712F93E19F66</string> [cite: 8]
+    <string>5A9E1F7C-01B3-4E90-BB7E-712F93E19F66</string>
     <key>PayloadVersion</key>
-    <integer>1</integer> [cite: 9]
+    <integer>1</integer>
 </dict>
 </plist>
