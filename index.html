@@ -93,6 +93,7 @@
             box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
             border: 1px solid rgba(255,255,255,0.1);
             margin-top: 10px;
+            cursor: pointer;
         }
         .install-btn:hover {
             transform: translateY(-3px) scale(1.02);
@@ -100,7 +101,31 @@
             filter: brightness(1.1);
         }
         .install-btn:active { transform: scale(0.95); }
-
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+            display: none; align-items: center; justify-content: center;
+            z-index: 1000; transition: 0.3s;
+        }
+        .modal-content {
+            width: 90%; max-width: 350px; text-align: center;
+            padding: 40px 20px; position: relative;
+        }
+        .modal-content h3 { font-size: 1.2rem; margin-bottom: 20px; color: var(--accent-cyan); font-family: monospace; }
+        .key-input {
+            width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px;
+            border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05);
+            color: #fff; font-family: monospace; text-align: center; outline: none;
+        }
+        .key-input:focus { border-color: var(--accent-cyan); }
+        .modal-btn-group { display: flex; gap: 10px; justify-content: center; }
+        .modal-btn {
+            padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer;
+            font-weight: 600; transition: 0.3s; font-size: 0.85rem;
+        }
+        .btn-confirm { background: var(--gradient); color: white; }
+        .btn-cancel { background: rgba(255,255,255,0.1); color: var(--text-sub); }
+        #popupError { color: #ef4444; font-size: 0.75rem; margin-bottom: 10px; display: none; }
         .music-player { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
         .disk {
             width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0;
@@ -177,7 +202,7 @@
             <h2 class="section-title">System.Info</h2>
             <p style="color: var(--text-sub); line-height: 1.6;">
                 Hi, My name is DShinee.<br>
-                I'm Devoloper<br>
+                I'm Developer<br>
                 ...<br>
                 Hello World.<br>
             </p>
@@ -190,12 +215,12 @@
                     DNS Custom By DShinee<br>
                     <span style="color: var(--accent-cyan); font-weight: 500;">
                         ✦ Locket Gold ✦<br>
-                    ✦ Spotify No Ads ✦<br>
+                        ✦ Spotify No Ads ✦<br>
                         ✦ Block Ads Web/App ✦</span>
                 </p>
-                <a href="DNSByDShinee.mobileconfig" class="install-btn">
+                <div class="install-btn" onclick="openKeyModal()">
                     <i class="fas fa-shield-alt"></i> Cài Đặt Ngay
-                </a>
+                </div>
                 <span style="font-size: 0.75rem; color: rgba(255,255,255,0.3); font-family: monospace;">Version v1.0</span>
             </div>
         </section>
@@ -208,7 +233,6 @@
                 <span class="skill-tag">Next.js / React</span>
                 <span class="skill-tag">Python</span>
                 <span class="skill-tag">Database Design</span>
-                <span class="skill-tag">White-box Testing</span>
                 <span class="skill-tag">Git / Github</span>
             </div>
         </section>
@@ -245,10 +269,45 @@
         <footer>
             <p>© 2025 Design By DShinee.</p>
         </footer>
-
     </div>
 
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="glass-card modal-content">
+            <h3>Vui lòng nhập Key Cài đặt</h3>
+            <input type="text" id="licenseKey" class="key-input" placeholder="Nhập Key của bạn...">
+            <div id="popupError">Key không chính xác! Liên hệ Admin để lấy key.</div>
+            <div class="modal-btn-group">
+                <button class="modal-btn btn-cancel" onclick="closeKeyModal()">Hủy</button>
+                <button class="modal-btn btn-confirm" onclick="verifyLicenseKey()">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="database.js"></script>
+
     <script>
+        function openKeyModal() {
+            document.getElementById('modalOverlay').style.display = 'flex';
+            document.getElementById('licenseKey').value = '';
+            document.getElementById('popupError').style.display = 'none';
+        }
+
+        function closeKeyModal() {
+            document.getElementById('modalOverlay').style.display = 'none';
+        }
+
+        function verifyLicenseKey() {
+            const inputKey = document.getElementById('licenseKey').value.trim();
+            const errorLabel = document.getElementById('popupError');
+            
+            if (typeof VALID_KEYS !== 'undefined' && VALID_KEYS.includes(inputKey)) {
+                window.location.href = "DNSByDShinee.mobileconfig";
+                closeKeyModal();
+            } else {
+                errorLabel.style.display = 'block';
+            }
+        }
+
         document.addEventListener('click', function(e) {
             const ripple = document.createElement("span");
             ripple.classList.add("ripple");
