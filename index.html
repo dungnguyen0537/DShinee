@@ -77,23 +77,32 @@
             background: var(--gradient); color: #fff !important; text-decoration: none;
             border-radius: 12px; font-weight: 600; font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3); border: none; cursor: pointer;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3); border: none; outline: none;
+            cursor: pointer;
         }
         .install-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5); filter: brightness(1.1); }
         .install-btn.sm { padding: 8px 20px; font-size: 0.85rem; margin-top: 15px; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--glass-border); }
+        .install-btn.sm:hover { background: var(--gradient); }
 
-        /* Donate Styles */
-        #donateArea { display: none; margin-top: 20px; animation: fadeInUp 0.5s forwards; text-align: center; }
+        /* Donate Area */
+        #donateArea { display: none; margin-top: 20px; animation: fadeInUp 0.5s forwards; }
         .qr-card {
             background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px;
             border: 1px solid var(--glass-border); display: inline-block; width: 100%; max-width: 320px;
         }
-        .qr-img { width: 100%; border-radius: 10px; margin-bottom: 15px; cursor: pointer; }
-        .bank-info { text-align: left; background: rgba(14, 165, 233, 0.1); padding: 15px; border-radius: 10px; margin-bottom: 15px; }
+        .qr-img { width: 100%; border-radius: 10px; margin-bottom: 15px; transition: 0.3s; }
+        .bank-info { text-align: left; background: rgba(14, 165, 233, 0.1); padding: 15px; border-radius: 10px; }
         .bank-item { font-size: 0.85rem; margin-bottom: 5px; color: var(--text-sub); }
         .bank-item b { color: var(--accent-cyan); }
 
         /* Others */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag {
+            padding: 8px 16px; background: rgba(56, 189, 248, 0.05); border-radius: 30px; font-size: 0.9rem;
+            border: 1px solid var(--glass-border); cursor: default; transition: 0.3s; color: var(--text-sub);
+        }
+        .skill-tag:hover { background: rgba(6, 182, 212, 0.2); border-color: var(--accent-cyan); color: #fff; box-shadow: 0 0 10px rgba(6, 182, 212, 0.2); }
+
         #extraConfigArea, #tutorialArea { display: none; width: 100%; animation: fadeInUp 0.5s forwards; text-align: center; }
         .status-text { font-size: 0.85rem; color: var(--accent-cyan); margin: 15px 0; display: block; font-style: italic; }
         .video-wrapper { 
@@ -101,16 +110,55 @@
             border: 1px solid var(--glass-border); display: none; background: #000;
         }
 
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(8px);
+            display: none; align-items: center; justify-content: center; z-index: 1000; transition: 0.3s;
+        }
+        .modal-content { width: 90%; max-width: 350px; text-align: center; padding: 40px 20px; position: relative; }
+        .key-input {
+            width: 100%; padding: 12px; margin-bottom: 15px; border-radius: 10px;
+            border: 1px solid var(--glass-border); background: rgba(255,255,255,0.05);
+            color: #fff; font-family: monospace; text-align: center; outline: none;
+        }
+        .key-input:focus { border-color: var(--accent-cyan); }
+        .modal-btn-group { display: flex; gap: 10px; justify-content: center; }
+        .modal-btn {
+            padding: 10px 20px; border-radius: 8px; border: none; cursor: pointer;
+            font-weight: 600; transition: 0.3s; font-size: 0.85rem;
+        }
+        .btn-confirm { background: var(--gradient); color: white; }
+        .btn-cancel { background: rgba(255,255,255,0.1); color: var(--text-sub); }
+        #popupError { color: #ef4444; font-size: 0.75rem; margin-bottom: 10px; display: none; }
+
         .music-player { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
         .disk {
             width: 80px; height: 80px; border-radius: 50%; flex-shrink: 0;
             background: url('https://avatar-ex-swe.nixcdn.com/song/2021/05/13/2/5/f/3/1620894286595_640.jpg') center/cover;
             border: 3px solid rgba(255,255,255,0.1); animation: spin 6s linear infinite paused;
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.3); transition: transform 0.5s;
         }
+        .player-info { flex: 1; display: flex; flex-direction: column; justify-content: center; min-width: 200px; }
+        .song-info h3 { font-size: 1.1rem; margin-bottom: 2px; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .song-info p { color: var(--text-sub); font-size: 0.85rem; margin-bottom: 10px; }
+        .progress-container { width: 100%; height: 5px; background: rgba(255,255,255,0.1); border-radius: 5px; cursor: pointer; margin-bottom: 5px; position: relative; }
+        .progress-bar { width: 0%; height: 100%; background: var(--gradient); border-radius: 5px; position: relative; box-shadow: 0 0 10px var(--accent-cyan); transition: width 0.1s linear; }
+        .time-box { display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-sub); font-family: monospace; }
+        .controls { display: flex; gap: 10px; align-items: center; }
+        .control-btn {
+            width: 45px; height: 45px; border-radius: 50%; border: none; cursor: pointer;
+            background: var(--gradient); color: white; font-size: 1.1rem; display: flex; align-items: center; justify-content: center;
+            transition: 0.2s; box-shadow: 0 0 10px rgba(6, 182, 212, 0.4); flex-shrink: 0;
+        }
+        .control-btn:active { transform: scale(0.9); }
+        .control-btn.secondary { width: 35px; height: 35px; background: rgba(255,255,255,0.1); font-size: 0.9rem; }
 
+        footer { text-align: center; padding: 40px; color: var(--text-sub); font-size: 0.9rem; }
+        
         @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .ripple { position: absolute; background: rgba(6, 182, 212, 0.5); border-radius: 50%; transform: scale(0); animation: ripple-anim 0.6s linear; pointer-events: none; }
+        @keyframes ripple-anim { to { transform: scale(4); opacity: 0; } }
     </style>
 </head>
 <body>
@@ -121,9 +169,9 @@
         <a href="#" class="logo">DShinee Profile</a>
         <div class="nav-links">
             <a href="#home">Home</a>
+            <a href="#about">About</a>
             <a href="#dns-setup">DNS</a>
             <a href="#donate">Donate</a>
-            <a href="#skills">Skills</a>
         </div>
     </nav>
 
@@ -136,55 +184,105 @@
             <h1>DShinee</h1>
             <p>Fullstack Developer & Database Designer</p>
             <div class="social-links">
-                <a href="https://www.facebook.com/dn.12th7" class="social-btn"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-spotify"></i></a>
-                <a href="#" class="social-btn"><i class="fas fa-heart"></i></a>
-                <a href="#" class="social-btn"><i class="fab fa-tiktok"></i></a>
+                <a href="https://www.facebook.com/dn.12th7" class="social-btn" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://open.spotify.com/user/312v3zei2oe5futdbqlvx4tujlli?si=6uBEvcIvQP22cJLk5kFcCQ" class="social-btn" title="Spotify"><i class="fab fa-spotify"></i></a>
+                <a href="https://locket.camera/links/rXf6HpKBU3c4czw57" class="social-btn" title="Locket"><i class="fas fa-heart"></i></a>
+                <a href="https://tiktok.com/@hihihehe_123hihi" class="social-btn" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                <a href="https://instagram.com//dn_12th7" class="social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-btn" title="Github"><i class="fab fa-github"></i></a>
             </div>
+        </section>
+
+        <section id="about" class="glass-card" style="animation-delay: 0.2s">
+            <h2 class="section-title">System.Info</h2>
+            <p style="color: var(--text-sub); line-height: 1.6;">
+                Hi, My name is DShinee.<br>
+                I'm Developer<br>
+                ...<br>
+                Hello World.<br>
+            </p>
         </section>
 
         <section id="dns-setup" class="glass-card" style="animation-delay: 0.3s">
             <h2 class="section-title">DShinee - DNS | 2025</h2>
             <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px;">
-                <p style="color: var(--text-sub); font-size: 0.95rem;">
+                <p style="color: var(--text-sub); font-size: 0.95rem; line-height: 1.5;">
+                    DNS Custom By DShinee<br>
                     <span style="color: var(--accent-cyan); font-weight: 500;">
-                        ✦ Locket Gold ✦ Spotify No Ads ✦ Block Ads ✦</span>
+                        ✦ Locket Gold ✦<br>
+                        ✦ Spotify No Ads ✦<br>
+                        ✦ Block Ads Web/App ✦</span>
                 </p>
+                
                 <div id="step1">
-                    <div class="install-btn" onclick="openKeyModal()"><i class="fas fa-shield-alt"></i> Cài Đặt Ngay</div>
+                    <div class="install-btn" onclick="openKeyModal()">
+                        <i class="fas fa-shield-alt"></i> Cài Đặt Ngay
+                    </div>
                 </div>
+
                 <div id="extraConfigArea">
-                    <span class="status-text">✦ Thành công! Thêm Config Shadowrocket ✦</span>
-                    <a href="shadowrocket://config/add/https://raw.githubusercontent.com/dungnguyen0537/Module/refs/heads/main/Locket_ByDungNguyen.sgmodule" class="install-btn" onclick="handleStep2()"><i class="fas fa-plus-circle"></i> Thêm Config</a>
+                    <span class="status-text">✦ Add DNS thành công! Thêm Config Shadowrocket ✦</span>
+                    <a href="shadowrocket://config/add/https://raw.githubusercontent.com/dungnguyen0537/Module/refs/heads/main/Locket_ByDungNguyen.sgmodule" class="install-btn" onclick="handleStep2()">
+                        <i class="fas fa-plus-circle"></i> Thêm Config
+                    </a>
                 </div>
+
                 <div id="tutorialArea">
-                    <div class="install-btn" onclick="toggleVideo()"><i class="fab fa-youtube"></i> Xem Video Hướng Dẫn</div>
+                    <span class="status-text">✦ Đã thêm Config! Xem video hướng dẫn ✦</span>
+                    <div class="install-btn" onclick="toggleVideo()">
+                        <i class="fab fa-youtube"></i> Xem Video Hướng Dẫn
+                    </div>
+                    
                     <div id="videoContainer" class="video-wrapper">
                         <div style="position:relative; padding-bottom:56.25%;">
-                            <iframe id="ytPlayer" style="position:absolute; top:0; left:0; width:100%; height:100%;" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                            <iframe id="ytPlayer" style="position:absolute; top:0; left:0; width:100%; height:100%;" 
+                                src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+                            </iframe>
                         </div>
                     </div>
                 </div>
+                <span style="font-size: 0.75rem; color: rgba(255,255,255,0.3); font-family: monospace; margin-top: 10px;">Version v1.0</span>
             </div>
         </section>
 
         <section id="donate" class="glass-card" style="animation-delay: 0.4s">
             <h2 class="section-title">Donate - Support Me</h2>
             <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px;">
-                <p style="color: var(--text-sub); font-size: 0.95rem;">Ủng hộ mình một ly cafe nhé! ☕</p>
-                <div class="install-btn" onclick="toggleDonate()"><i class="fas fa-coffee"></i> Donate</div>
-                <div id="donateArea">
-                    <div class="qr-card">
-                        <img id="qrImage" src="https://sf-static.upanhlaylink.com/img/image_202512155e884ec891f753c155d8866579b936d8.jpg" alt="Mã QR Donate" class="qr-img">
-                        <div class="bank-info">
-                            <div class="bank-item">Ngân hàng: <b>MB BANK</b></div>
-                            <div class="bank-item">Chủ TK: <b>NGUYEN VAN A</b></div>
-                            <div class="bank-item">Số TK: <b>1234567890</b></div>
-                        </div>
-                        <button class="install-btn sm" onclick="downloadQR()"><i class="fas fa-share-square"></i> Lưu / Chia sẻ QR</button>
-                        <p style="font-size: 0.7rem; color: var(--text-sub); margin-top: 10px; opacity: 0.7;">(Chọn <b>Lưu hình ảnh</b> để mã QR vào Album của bạn)</p>
+                <p style="color: var(--text-sub); font-size: 0.95rem;">
+                    Nếu bạn cảm thấy dự án hữu ích, hãy mời mình một ly cafe nhé! ☕
+                </p>
+                
+                <div id="donateBtnBox">
+                    <div class="install-btn" onclick="toggleDonate()">
+                        <i class="fas fa-coffee"></i> Donate
                     </div>
                 </div>
+
+                <div id="donateArea">
+                    <div class="qr-card">
+                        <img id="qrImage" src="https://sf-static.upanhlaylink.com/img/image_2025122250facdb705f6d3dc657195e21be30052.jpg" alt="Mã QR Donate" class="qr-img">
+                        <div class="bank-info">
+                            <div class="bank-item">Ngân hàng: <b>MB BANK</b></div>
+                            <div class="bank-item">Chủ TK: <b>NGUYEN VAN DUNG</b></div>
+                            <div class="bank-item">Số TK: <b>83865888888</b></div>
+                        </div>
+                        <button class="install-btn sm" onclick="downloadQR()">
+                            <i class="fas fa-share-square"></i> Lưu / Chia sẻ QR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="glass-card" style="animation-delay: 0.5s">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">HTML5 / CSS3</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">Next.js / React</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Database Design</span>
+                <span class="skill-tag">Git / Github</span>
             </div>
         </section>
 
@@ -197,43 +295,50 @@
                         <h3 id="songTitle">Loading...</h3>
                         <p id="songArtist">Loading...</p>
                     </div>
-                    <div class="progress-container" id="progressContainer" style="width: 100%; height: 5px; background: rgba(255,255,255,0.1); border-radius: 5px; cursor: pointer; margin-top:10px;">
-                        <div class="progress-bar" id="progressBar" style="width: 0%; height: 100%; background: var(--gradient); border-radius: 5px;"></div>
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
                     </div>
-                    <div style="display: flex; justify-content: space-between; font-size: 0.75rem; margin-top: 5px; color: var(--text-sub);">
-                        <span id="currTime">0:00</span><span id="durTime">0:00</span>
+                    <div class="time-box">
+                        <span id="currTime">0:00</span>
+                        <span id="durTime">0:00</span>
                     </div>
                 </div>
-                <div class="controls" style="display:flex; gap:10px;">
-                    <button class="control-btn" id="playBtn" style="width:45px; height:45px; border-radius:50%; background:var(--gradient); border:none; color:#fff; cursor:pointer;"><i class="fas fa-play" id="playIcon"></i></button>
-                    <button class="control-btn" id="nextBtn" style="width:45px; height:45px; border-radius:50%; background:rgba(255,255,255,0.1); border:none; color:#fff; cursor:pointer;"><i class="fas fa-forward"></i></button>
+                <div class="controls">
+                    <button class="control-btn" id="playBtn">
+                        <i class="fas fa-play" id="playIcon"></i>
+                    </button>
+                    <button class="control-btn secondary" id="nextBtn">
+                        <i class="fas fa-forward"></i>
+                    </button>
                 </div>
                 <audio id="audio"></audio>
             </div>
         </section>
 
-        <footer><p>© 2025 Design By DShinee.</p></footer>
+        <footer>
+            <p>© 2025 Design By DShinee.</p>
+        </footer>
     </div>
 
     <div class="modal-overlay" id="modalOverlay">
-        <div class="glass-card" style="width: 90%; max-width: 350px; text-align: center; padding: 40px 20px;">
-            <h3>Nhập Key Install</h3>
-            <input type="text" id="licenseKey" style="width:100%; padding:12px; margin:15px 0; border-radius:10px; border:1px solid var(--glass-border); background:rgba(255,255,255,0.05); color:#fff; text-align:center;">
-            <div id="popupError" style="color:#ef4444; font-size:0.75rem; display:none; margin-bottom:10px;">Key không chính xác!</div>
-            <div style="display:flex; gap:10px; justify-content:center;">
-                <button onclick="closeKeyModal()" style="padding:10px 20px; border-radius:8px; border:none; background:rgba(255,255,255,0.1); color:#fff;">Hủy</button>
-                <button onclick="verifyLicenseKey()" style="padding:10px 20px; border-radius:8px; border:none; background:var(--gradient); color:#fff;">Xác nhận</button>
+        <div class="glass-card modal-content">
+            <h3>Vui lòng nhập Key Install</h3>
+            <input type="text" id="licenseKey" class="key-input" placeholder="Nhập Key của bạn...">
+            <div id="popupError">Key không chính xác! Liên hệ Admin để lấy key.</div>
+            <div class="modal-btn-group">
+                <button class="modal-btn btn-cancel" onclick="closeKeyModal()">Hủy</button>
+                <button class="modal-btn btn-confirm" onclick="verifyLicenseKey()">Xác nhận</button>
             </div>
         </div>
     </div>
 
     <script src="https://www.youtube.com/iframe_api"></script>
     <script src="database.js"></script>
+
     <script>
         const YOUTUBE_VIDEO_ID = "9BQdGlMAw-k";
         let ytPlayer;
 
-        // YOUTUBE API
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('ytPlayer', {
                 events: { 'onStateChange': onPlayerStateChange }
@@ -245,102 +350,214 @@
             else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) { playSong(); }
         }
 
+        function openKeyModal() {
+            document.getElementById('modalOverlay').style.display = 'flex';
+            document.getElementById('licenseKey').value = '';
+            document.getElementById('popupError').style.display = 'none';
+        }
+
+        function closeKeyModal() { document.getElementById('modalOverlay').style.display = 'none'; }
+
+        function verifyLicenseKey() {
+            const inputKey = document.getElementById('licenseKey').value.trim();
+            const errorLabel = document.getElementById('popupError');
+            if (typeof VALID_KEYS !== 'undefined' && VALID_KEYS.includes(inputKey)) {
+                window.location.href = "DNSByDShinee.mobileconfig";
+                closeKeyModal();
+                setTimeout(() => {
+                    document.getElementById('step1').style.display = 'none';
+                    document.getElementById('extraConfigArea').style.display = 'block';
+                }, 800);
+            } else { errorLabel.style.display = 'block'; }
+        }
+
+        function handleStep2() {
+            setTimeout(() => {
+                document.getElementById('extraConfigArea').style.display = 'none';
+                document.getElementById('tutorialArea').style.display = 'block';
+                document.getElementById('tutorialArea').scrollIntoView({ behavior: 'smooth' });
+            }, 1000);
+        }
+
         function toggleVideo() {
-            const wrapper = document.getElementById('videoContainer');
+            const videoWrapper = document.getElementById('videoContainer');
             const player = document.getElementById('ytPlayer');
-            if (wrapper.style.display === 'block') {
-                wrapper.style.display = 'none';
-                player.src = ""; playSong();
+            if (videoWrapper.style.display === 'block') {
+                videoWrapper.style.display = 'none';
+                player.src = "";
+                playSong();
             } else {
-                wrapper.style.display = 'block';
+                videoWrapper.style.display = 'block';
                 player.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&enablejsapi=1`;
-                setTimeout(() => { onYouTubeIframeAPIReady(); wrapper.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 500);
+                setTimeout(() => {
+                    onYouTubeIframeAPIReady();
+                    videoWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 500);
             }
         }
 
-        // DONATE & DOWNLOAD QR (WEB SHARE API)
         function toggleDonate() {
-            const area = document.getElementById('donateArea');
-            area.style.display = (area.style.display === 'block') ? 'none' : 'block';
-            if(area.style.display === 'block') setTimeout(() => area.scrollIntoView({behavior:'smooth', block:'center'}), 300);
+            const donateArea = document.getElementById('donateArea');
+            if (donateArea.style.display === 'block') {
+                donateArea.style.display = 'none';
+            } else {
+                donateArea.style.display = 'block';
+                setTimeout(() => {
+                    donateArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            }
         }
 
         async function downloadQR() {
             const img = document.getElementById('qrImage');
-            try {
-                const response = await fetch(img.src);
-                const blob = await response.blob();
-                const file = new File([blob], 'DShinee_QR.jpg', { type: blob.type });
+            const imgSrc = img.src;
+            const fileName = 'DShinee_QR_Donate.jpg';
 
+            try {
+                const response = await fetch(imgSrc);
+                const blob = await response.blob();
+                const file = new File([blob], fileName, { type: blob.type });
+
+                // Nếu hỗ trợ Web Share API (Mobile)
                 if (navigator.canShare && navigator.canShare({ files: [file] })) {
-                    await navigator.share({ files: [file], title: 'Mã QR Donate' });
+                    await navigator.share({
+                        files: [file],
+                        title: 'Mã QR Donate',
+                    });
                 } else {
+                    // Tải trực tiếp (PC)
                     const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a'); a.href = url; a.download = 'DShinee_QR.jpg'; a.click();
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    a.download = fileName;
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                    document.body.removeChild(a);
                 }
-            } catch (e) { window.open(img.src, '_blank'); }
+            } catch (error) {
+                // Mở tab mới nếu bị chặn
+                window.open(imgSrc, '_blank');
+            }
         }
 
-        // MUSIC PLAYER
+        document.addEventListener('click', function(e) {
+            const ripple = document.createElement("span");
+            ripple.classList.add("ripple");
+            ripple.style.left = e.clientX + "px";
+            ripple.style.top = e.clientY + "px";
+            document.body.appendChild(ripple);
+            setTimeout(() => { ripple.remove(); }, 600);
+        });
+
         const playlist = [
             { title: "Không Buông Drill", artist: "Hngle x Ari", src: "https://files.catbox.moe/9adi9p.mp3" },
             { title: "Em", artist: "Binz", src: "https://files.catbox.moe/vs0z1h.mp3" },
             { title: "Anh Đã Lớn Hơn Thế Nhiều", artist: "Dick ft. Michelle Ngn", src: "https://files.catbox.moe/w9l7gb.mp3" }
         ];
+
         const audio = document.getElementById('audio');
+        const songTitle = document.getElementById('songTitle');
+        const songArtist = document.getElementById('songArtist');
+        const playBtn = document.getElementById('playBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const playIcon = document.getElementById('playIcon');
+        const disk = document.getElementById('disk');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const currTime = document.getElementById('currTime');
+        const durTime = document.getElementById('durTime');
+
         let isPlaying = false;
-        let songIndex = Math.floor(Math.random() * playlist.length);
+        let currentSongIndex = -1;
+
+        function getRandomIndex() {
+            if (playlist.length <= 1) return 0;
+            let newIndex;
+            do { newIndex = Math.floor(Math.random() * playlist.length); } while (newIndex === currentSongIndex);
+            return newIndex;
+        }
 
         function loadSong(index) {
+            currentSongIndex = index;
             const song = playlist[index];
-            document.getElementById('songTitle').innerText = song.title;
-            document.getElementById('songArtist').innerText = song.artist;
+            songTitle.innerText = song.title;
+            songArtist.innerText = song.artist;
             audio.src = song.src;
+            progressBar.style.width = `0%`;
+            currTime.innerText = "0:00";
         }
 
         function playSong() {
-            if (ytPlayer && typeof ytPlayer.getPlayerState === 'function' && ytPlayer.getPlayerState() === 1) return;
-            isPlaying = true; audio.play().catch(()=>{});
-            document.getElementById('disk').style.animationPlayState = 'running';
-            document.getElementById('playIcon').className = 'fas fa-pause';
+            if (ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
+                if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) return;
+            }
+            isPlaying = true;
+            audio.play().catch(() => {});
+            disk.style.animationPlayState = 'running';
+            playIcon.className = 'fas fa-pause';
         }
 
         function pauseSong() {
-            isPlaying = false; audio.pause();
-            document.getElementById('disk').style.animationPlayState = 'paused';
-            document.getElementById('playIcon').className = 'fas fa-play';
+            isPlaying = false;
+            audio.pause();
+            disk.style.animationPlayState = 'paused';
+            playIcon.className = 'fas fa-play';
         }
 
-        document.getElementById('playBtn').addEventListener('click', () => isPlaying ? pauseSong() : playSong());
-        document.getElementById('nextBtn').addEventListener('click', () => { songIndex = (songIndex + 1) % playlist.length; loadSong(songIndex); playSong(); });
-        audio.addEventListener('timeupdate', () => {
-            const pct = (audio.currentTime / audio.duration) * 100;
-            document.getElementById('progressBar').style.width = pct + '%';
-            document.getElementById('currTime').innerText = Math.floor(audio.currentTime/60) + ":" + ("0"+Math.floor(audio.currentTime%60)).slice(-2);
-            if(!isNaN(audio.duration)) document.getElementById('durTime').innerText = Math.floor(audio.duration/60) + ":" + ("0"+Math.floor(audio.duration%60)).slice(-2);
+        function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = Math.floor(seconds % 60);
+            return `${min}:${sec < 10 ? '0' + sec : sec}`;
+        }
+
+        playBtn.addEventListener('click', (e) => { e.stopPropagation(); isPlaying ? pauseSong() : playSong(); });
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); loadSong(getRandomIndex()); playSong(); });
+        audio.addEventListener('timeupdate', (e) => {
+            const { duration, currentTime } = e.srcElement;
+            if (isNaN(duration)) return;
+            progressBar.style.width = `${(currentTime / duration) * 100}%`;
+            currTime.innerText = formatTime(currentTime);
+            durTime.innerText = formatTime(duration);
         });
-        audio.addEventListener('ended', () => { songIndex = (songIndex + 1) % playlist.length; loadSong(songIndex); playSong(); });
-        
-        // DNS MODAL LOGIC
-        function openKeyModal() { document.getElementById('modalOverlay').style.display = 'flex'; }
-        function closeKeyModal() { document.getElementById('modalOverlay').style.display = 'none'; }
-        function verifyLicenseKey() {
-            const key = document.getElementById('licenseKey').value.trim();
-            if (typeof VALID_KEYS !== 'undefined' && VALID_KEYS.includes(key)) {
-                window.location.href = "DNSByDShinee.mobileconfig"; closeKeyModal();
-                setTimeout(() => { document.getElementById('step1').style.display = 'none'; document.getElementById('extraConfigArea').style.display = 'block'; }, 800);
-            } else document.getElementById('popupError').style.display = 'block';
+        audio.addEventListener('ended', () => { loadSong(getRandomIndex()); playSong(); });
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
+            const clickX = e.offsetX;
+            audio.currentTime = (clickX / width) * audio.duration;
+        });
+
+        window.addEventListener('load', () => {
+            loadSong(getRandomIndex());
+            const unlock = () => { if(!isPlaying) playSong(); document.removeEventListener('click', unlock); };
+            document.addEventListener('click', unlock);
+        });
+
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext('2d');
+        let width, height, particles = [];
+        function resize() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
+        class Snowflake {
+            constructor() { this.reset(); this.y = Math.random() * height; }
+            reset() {
+                this.x = Math.random() * width; this.y = -10; this.speed = Math.random() * 1.5 + 0.5;
+                this.size = Math.random() * 2 + 1; this.opacity = Math.random() * 0.5 + 0.2;
+                this.sway = Math.random() * 0.02 - 0.01; this.angle = Math.random() * Math.PI * 2;
+            }
+            update() {
+                this.y += this.speed; this.angle += 0.02; this.x += Math.sin(this.angle) * 0.5 + this.sway;
+                if (this.y > height) this.reset();
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; ctx.fill();
+            }
         }
-        function handleStep2() { setTimeout(() => { document.getElementById('extraConfigArea').style.display = 'none'; document.getElementById('tutorialArea').style.display = 'block'; }, 1000); }
-
-        window.onload = () => { loadSong(songIndex); document.addEventListener('click', () => { if(!isPlaying) playSong(); }, {once:true}); };
-
-        // SNOW EFFECT (Simplified)
-        const canvas = document.getElementById('snowCanvas'); const ctx = canvas.getContext('2d');
-        let w, h, flakes = [];
-        function init() { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; flakes = []; for(let i=0; i<80; i++) flakes.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*2+1, d:Math.random()*1}); }
-        function draw() { ctx.clearRect(0,0,w,h); ctx.fillStyle="rgba(255,255,255,0.6)"; ctx.beginPath(); flakes.forEach(f => { ctx.moveTo(f.x, f.y); ctx.arc(f.x, f.y, f.r, 0, Math.PI*2, true); f.y += f.d + 0.5; if(f.y > h) f.y = -10; }); ctx.fill(); requestAnimationFrame(draw); }
-        window.onresize = init; init(); draw();
+        function initSnow() { resize(); for (let i = 0; i < 80; i++) particles.push(new Snowflake()); }
+        function animate() { ctx.clearRect(0, 0, width, height); particles.forEach(p => { p.update(); p.draw(); }); requestAnimationFrame(animate); }
+        window.addEventListener('resize', resize);
+        initSnow(); animate();
     </script>
 </body>
 </html>
