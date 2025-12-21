@@ -23,7 +23,7 @@
             <key>PayloadIdentifier</key>
             <string>com.camsitup.controld.dnsprofile.6a81c3</string>
             <key>PayloadOrganization</key>
-            <string>Block Ads</string>
+            <string>Block Ads - Locket Gold</string>
             <key>PayloadType</key>
             <string>com.apple.dnsSettings.managed</string>
             <key>PayloadUUID</key>
@@ -53,3 +53,4 @@
     <integer>1</integer>
 </dict>
 </plist>
+
