@@ -61,6 +61,7 @@
         .avatar { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--bg-color); }
         .hero h1 { font-size: 2.5rem; margin-bottom: 5px; background: var(--gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .hero p { color: var(--text-sub); font-size: 1.1rem; margin-bottom: 20px; }
+        
         .social-links { display: flex; justify-content: center; gap: 15px; }
         .social-btn {
             width: 45px; height: 45px; border-radius: 12px; background: rgba(56, 189, 248, 0.1);
@@ -71,23 +72,36 @@
 
         .section-title { font-size: 1.5rem; margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px; color: #fff; }
 
-        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-        .skill-tag {
-            padding: 8px 16px; background: rgba(56, 189, 248, 0.05); border-radius: 30px; font-size: 0.9rem;
-            border: 1px solid var(--glass-border); cursor: default; transition: 0.3s; color: var(--text-sub);
-        }
-        .skill-tag:hover { background: rgba(6, 182, 212, 0.2); border-color: var(--accent-cyan); color: #fff; box-shadow: 0 0 10px rgba(6, 182, 212, 0.2); }
-
         .install-btn {
             display: inline-flex; align-items: center; gap: 10px; padding: 12px 28px;
             background: var(--gradient); color: #fff !important; text-decoration: none;
             border-radius: 12px; font-weight: 600; font-size: 0.95rem;
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3); border: 1px solid rgba(255,255,255,0.1);
-            margin-top: 10px; cursor: pointer;
+            margin-top: 10px; cursor: pointer; border: none; outline: none;
         }
         .install-btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px rgba(6, 182, 212, 0.5); filter: brightness(1.1); }
-        .install-btn:active { transform: scale(0.95); }
+        .install-btn.sm { padding: 8px 20px; font-size: 0.85rem; margin-top: 15px; background: rgba(56, 189, 248, 0.1); border: 1px solid var(--glass-border); }
+        .install-btn.sm:hover { background: var(--gradient); }
+
+        /* Donate Area */
+        #donateArea { display: none; margin-top: 20px; animation: fadeInUp 0.5s forwards; }
+        .qr-card {
+            background: rgba(255,255,255,0.05); border-radius: 15px; padding: 20px;
+            border: 1px solid var(--glass-border); display: inline-block; width: 100%; max-width: 320px;
+        }
+        .qr-img { width: 100%; border-radius: 10px; margin-bottom: 15px; transition: 0.3s; }
+        .bank-info { text-align: left; background: rgba(14, 165, 233, 0.1); padding: 15px; border-radius: 10px; }
+        .bank-item { font-size: 0.85rem; margin-bottom: 5px; color: var(--text-sub); }
+        .bank-item b { color: var(--accent-cyan); }
+
+        /* Others */
+        .skills-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+        .skill-tag {
+            padding: 8px 16px; background: rgba(56, 189, 248, 0.05); border-radius: 30px; font-size: 0.9rem;
+            border: 1px solid var(--glass-border); cursor: default; transition: 0.3s; color: var(--text-sub);
+        }
+        .skill-tag:hover { background: rgba(6, 182, 212, 0.2); border-color: var(--accent-cyan); color: #fff; box-shadow: 0 0 10px rgba(6, 182, 212, 0.2); }
 
         #extraConfigArea, #tutorialArea { display: none; width: 100%; animation: fadeInUp 0.5s forwards; text-align: center; }
         .status-text { font-size: 0.85rem; color: var(--accent-cyan); margin: 15px 0; display: block; font-style: italic; }
@@ -157,7 +171,7 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#dns-setup">DNS</a>
-            <a href="#skills">Skills</a>
+            <a href="#donate">Donate</a>
         </div>
     </nav>
 
@@ -179,7 +193,7 @@
             </div>
         </section>
 
-        <section id="about" class="glass-card" style="animation-delay: 0.3s">
+        <section id="about" class="glass-card" style="animation-delay: 0.2s">
             <h2 class="section-title">System.Info</h2>
             <p style="color: var(--text-sub); line-height: 1.6;">
                 Hi, My name is DShinee.<br>
@@ -189,7 +203,7 @@
             </p>
         </section>
 
-        <section id="dns-setup" class="glass-card" style="animation-delay: 0.4s">
+        <section id="dns-setup" class="glass-card" style="animation-delay: 0.3s">
             <h2 class="section-title">DShinee - DNS | 2025</h2>
             <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px;">
                 <p style="color: var(--text-sub); font-size: 0.95rem; line-height: 1.5;">
@@ -227,8 +241,36 @@
                         </div>
                     </div>
                 </div>
-
                 <span style="font-size: 0.75rem; color: rgba(255,255,255,0.3); font-family: monospace; margin-top: 10px;">Version v1.0</span>
+            </div>
+        </section>
+
+        <section id="donate" class="glass-card" style="animation-delay: 0.4s">
+            <h2 class="section-title">Donate - Support Me</h2>
+            <div style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 15px;">
+                <p style="color: var(--text-sub); font-size: 0.95rem;">
+                    Nếu bạn cảm thấy dự án hữu ích, hãy mời mình một ly cafe nhé! ☕
+                </p>
+                
+                <div id="donateBtnBox">
+                    <div class="install-btn" onclick="toggleDonate()">
+                        <i class="fas fa-coffee"></i> Donate
+                    </div>
+                </div>
+
+                <div id="donateArea">
+                    <div class="qr-card">
+                        <img id="qrImage" src="https://sf-static.upanhlaylink.com/img/image_2025122250facdb705f6d3dc657195e21be30052.jpg" alt="Mã QR Donate" class="qr-img">
+                        <div class="bank-info">
+                            <div class="bank-item">Ngân hàng: <b>MB BANK</b></div>
+                            <div class="bank-item">Chủ TK: <b>NGUYEN VAN DUNG</b></div>
+                            <div class="bank-item">Số TK: <b>83865888888</b></div>
+                        </div>
+                        <button class="install-btn sm" onclick="downloadQR()">
+                            <i class="fas fa-download"></i> Lưu Mã QR
+                        </button>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -244,7 +286,7 @@
             </div>
         </section>
 
-        <section class="glass-card" style="animation-delay: 0.7s">
+        <section class="glass-card" style="animation-delay: 0.6s">
             <h2 class="section-title">My Playlist</h2>
             <div class="music-player">
                 <div class="disk" id="disk"></div>
@@ -295,24 +337,17 @@
 
     <script>
         const YOUTUBE_VIDEO_ID = "9BQdGlMAw-k";
-        let ytPlayer; // Biến lưu trữ player YouTube
+        let ytPlayer;
 
-        // Hàm gọi tự động bởi YouTube API khi sẵn sàng
         function onYouTubeIframeAPIReady() {
             ytPlayer = new YT.Player('ytPlayer', {
-                events: {
-                    'onStateChange': onPlayerStateChange
-                }
+                events: { 'onStateChange': onPlayerStateChange }
             });
         }
 
-        // Theo dõi trạng thái video để dừng/phát nhạc nền
         function onPlayerStateChange(event) {
-            if (event.data == YT.PlayerState.PLAYING) {
-                pauseSong(); // Nếu video đang phát -> dừng nhạc nền
-            } else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) {
-                playSong(); // Nếu video dừng hoặc hết -> phát lại nhạc nền
-            }
+            if (event.data == YT.PlayerState.PLAYING) { pauseSong(); } 
+            else if (event.data == YT.PlayerState.PAUSED || event.data == YT.PlayerState.ENDED) { playSong(); }
         }
 
         function openKeyModal() {
@@ -321,14 +356,11 @@
             document.getElementById('popupError').style.display = 'none';
         }
 
-        function closeKeyModal() {
-            document.getElementById('modalOverlay').style.display = 'none';
-        }
+        function closeKeyModal() { document.getElementById('modalOverlay').style.display = 'none'; }
 
         function verifyLicenseKey() {
             const inputKey = document.getElementById('licenseKey').value.trim();
             const errorLabel = document.getElementById('popupError');
-            
             if (typeof VALID_KEYS !== 'undefined' && VALID_KEYS.includes(inputKey)) {
                 window.location.href = "DNSByDShinee.mobileconfig";
                 closeKeyModal();
@@ -336,9 +368,7 @@
                     document.getElementById('step1').style.display = 'none';
                     document.getElementById('extraConfigArea').style.display = 'block';
                 }, 800);
-            } else {
-                errorLabel.style.display = 'block';
-            }
+            } else { errorLabel.style.display = 'block'; }
         }
 
         function handleStep2() {
@@ -352,21 +382,57 @@
         function toggleVideo() {
             const videoWrapper = document.getElementById('videoContainer');
             const player = document.getElementById('ytPlayer');
-            
             if (videoWrapper.style.display === 'block') {
                 videoWrapper.style.display = 'none';
                 player.src = "";
-                playSong(); // Đóng video thì phát lại nhạc nền
+                playSong();
             } else {
                 videoWrapper.style.display = 'block';
-                // Thêm tham số enablejsapi=1 để API có thể kết nối
                 player.src = `https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&enablejsapi=1`;
-                
-                // Khởi tạo lại kết nối API với iframe mới
                 setTimeout(() => {
                     onYouTubeIframeAPIReady();
                     videoWrapper.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }, 500);
+            }
+        }
+
+        // DONATE TOGGLE
+        function toggleDonate() {
+            const donateArea = document.getElementById('donateArea');
+            if (donateArea.style.display === 'block') {
+                donateArea.style.display = 'none';
+            } else {
+                donateArea.style.display = 'block';
+                setTimeout(() => {
+                    donateArea.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 300);
+            }
+        }
+
+        // HÀM TẢI MÃ QR
+        async function downloadQR() {
+            const img = document.getElementById('qrImage');
+            const imgSrc = img.src;
+            try {
+                // Fetch image and convert to blob to avoid CORS issues if possible
+                const response = await fetch(imgSrc);
+                const blob = await response.blob();
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'DShinee_QR_Donate.jpg';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            } catch (error) {
+                // Fallback nếu fetch bị chặn
+                const a = document.createElement('a');
+                a.href = imgSrc;
+                a.download = 'DShinee_QR_Donate.jpg';
+                a.target = '_blank';
+                a.click();
             }
         }
 
@@ -380,7 +446,7 @@
             setTimeout(() => { ripple.remove(); }, 600);
         });
 
-        // Music Player Logic
+        // Music Player
         const playlist = [
             { title: "Không Buông Drill", artist: "Hngle x Ari", src: "https://files.catbox.moe/9adi9p.mp3" },
             { title: "Em", artist: "Binz", src: "https://files.catbox.moe/vs0z1h.mp3" },
@@ -420,7 +486,6 @@
         }
 
         function playSong() {
-            // Chỉ phát nhạc nếu video YouTube KHÔNG đang chạy
             if (ytPlayer && typeof ytPlayer.getPlayerState === 'function') {
                 if (ytPlayer.getPlayerState() === YT.PlayerState.PLAYING) return;
             }
@@ -437,36 +502,27 @@
             playIcon.className = 'fas fa-play';
         }
 
-        function nextSong() {
-            loadSong(getRandomIndex());
-            playSong();
-        }
-
-        function updateProgress(e) {
-            const { duration, currentTime } = e.srcElement;
-            if (isNaN(duration)) return;
-            progressBar.style.width = `${(currentTime / duration) * 100}%`;
-            currTime.innerText = formatTime(currentTime);
-            durTime.innerText = formatTime(duration);
-        }
-
         function formatTime(seconds) {
             const min = Math.floor(seconds / 60);
             const sec = Math.floor(seconds % 60);
             return `${min}:${sec < 10 ? '0' + sec : sec}`;
         }
 
-        function setProgress(e) {
-            const width = this.clientWidth;
+        playBtn.addEventListener('click', (e) => { e.stopPropagation(); isPlaying ? pauseSong() : playSong(); });
+        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); loadSong(getRandomIndex()); playSong(); });
+        audio.addEventListener('timeupdate', (e) => {
+            const { duration, currentTime } = e.srcElement;
+            if (isNaN(duration)) return;
+            progressBar.style.width = `${(currentTime / duration) * 100}%`;
+            currTime.innerText = formatTime(currentTime);
+            durTime.innerText = formatTime(duration);
+        });
+        audio.addEventListener('ended', () => { loadSong(getRandomIndex()); playSong(); });
+        progressContainer.addEventListener('click', (e) => {
+            const width = progressContainer.clientWidth;
             const clickX = e.offsetX;
             audio.currentTime = (clickX / width) * audio.duration;
-        }
-
-        playBtn.addEventListener('click', (e) => { e.stopPropagation(); isPlaying ? pauseSong() : playSong(); });
-        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); nextSong(); });
-        audio.addEventListener('timeupdate', updateProgress);
-        audio.addEventListener('ended', nextSong);
-        progressContainer.addEventListener('click', setProgress);
+        });
 
         window.addEventListener('load', () => {
             loadSong(getRandomIndex());
@@ -478,7 +534,6 @@
         const canvas = document.getElementById('snowCanvas');
         const ctx = canvas.getContext('2d');
         let width, height, particles = [];
-
         function resize() { width = window.innerWidth; height = window.innerHeight; canvas.width = width; canvas.height = height; }
         class Snowflake {
             constructor() { this.reset(); this.y = Math.random() * height; }
