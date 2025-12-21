@@ -56,7 +56,10 @@
         </dict>
     </array>
     <key>PayloadDescription</key>
-    <string>Chức năng: ✔ Locket Gold ✔ Spotify No Ads ✔ Block Ads Web/App</string>
+    <string>Chức năng: 
+    ✔ Locket Gold 
+    ✔ Spotify No Ads 
+    ✔ Block Ads Web/App</string>
     <key>PayloadDisplayName</key>
     <string>DShinee - DNS</string>
     <key>PayloadIdentifier</key>
@@ -73,4 +76,5 @@
     <integer>1</integer>
 </dict>
 </plist>
+
 
