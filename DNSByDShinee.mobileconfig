@@ -13,7 +13,11 @@
                 <string>https://dns.nextdns.io/6a81c3</string>
             </dict>
             <key>PayloadDescription</key>
-            <string>Chức năng: ✔ Locket Gold ✔ Spotify No Ads ✔ Block Ads Web/App _DShinee_</string>
+            <string>Chức năng: 
+            ✔ Locket Gold 
+            ✔ Spotify No Ads 
+            ✔ Block Ads Web/App 
+            _DShinee_</string>
             <key>PayloadDisplayName</key>
             <string>DShinee - Locket + Spotify</string>
             <key>PayloadIdentifier</key>
@@ -69,3 +73,4 @@
     <integer>1</integer>
 </dict>
 </plist>
+
