@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://dns.nextdns.io/6a81c3</string>
+            </dict>
+            <key>PayloadDescription</key>
+            <string>Chức năng:
+            ✔ Locket Gold
+            ✔ Spotify No Ads
+            ✔ Block Ads Web/App
+            _DShinee_</string>
+            <key>PayloadDisplayName</key>
+            <string>DShinee - Locket + Spotify</string>
+            <key>PayloadOrganization</key>
+            <string>Block Ads</string>
+            <key>PayloadIdentifier</key>
+            <string>com.camsitup.controld.dnsprofile.6a81c3</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>0E3B4D2E-4C3F-4B2D-BAE6-8E1F6E7A2F44</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+
+        <dict>
+            <key>DNSSettings</key>
+            <dict>
+                <key>DNSProtocol</key>
+                <string>HTTPS</string>
+                <key>ServerURL</key>
+                <string>https://dns.nextdns.io/8a922e</string>
+            </dict>
+            <key>PayloadDescription</key>
+            <string>Chức năng:
+            ✔ Locket Gold
+            _DShinee_</string>
+            <key>PayloadDisplayName</key>
+            <string>DShinee - Locket</string>
+            <key>PayloadOrganization</key>
+            <string>No Block Ads</string>
+            <key>PayloadIdentifier</key>
+            <string>com.camsitup.controld.dnsprofile.8a922e</string>
+            <key>PayloadType</key>
+            <string>com.apple.dnsSettings.managed</string>
+            <key>PayloadUUID</key>
+            <string>5C8A7F4B-6D1E-4A9C-8B3A-7F1E0C4A9D3F</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+        </dict>
+    </array>
+
+    <key>PayloadDescription</key>
+    <string>Function:
+      ✔ Locket Gold 
+      ✔ Spotify No Ads
+      ✔ Block Ads Web/App</string>
+    <key>PayloadDisplayName</key>
+    <string>DShinee - DNS</string>
+    <key>PayloadOrganization</key>
+    <string>Hello World</string>
+    <key>PayloadIdentifier</key>
+    <string>com.camsitup.profile.controld.doh.dual</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>5A9E1F7C-01B3-4E90-BB7E-712F93E19F66</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>
