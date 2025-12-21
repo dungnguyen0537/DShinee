@@ -65,8 +65,7 @@
     <key>PayloadIdentifier</key>
     <string>com.camsitup.profile.controld.doh.dual</string>
     <key>PayloadOrganization</key>
-    <string>Custom By DShinee</string>
-    <string>Verision v1.0</string>
+    <string>Custom By DShinee | Version v1.0</string>
     <key>PayloadRemovalDisallowed</key>
     <false/>
     <key>PayloadType</key>
@@ -77,6 +76,7 @@
     <integer>1</integer>
 </dict>
 </plist>
+
 
 
 
