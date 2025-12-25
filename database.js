@@ -2,7 +2,6 @@ const VALID_KEYS = [
     "DShinee_2025",
     "ThuHien2908",
     "Lamoanh",
-    "VPhuc0202",
-    "Dat09"
+    "VPhuc0202"
     
 ];
