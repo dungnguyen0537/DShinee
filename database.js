@@ -3,6 +3,6 @@ const VALID_KEYS = [
     "Quinnhu",
     "Lamoanh",
     "VPhuc0202",
-    "Android81"
+    
     
 ];
