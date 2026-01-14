@@ -26,6 +26,26 @@
         <div class="loader-text">Updating System...</div>
         <div class="loader-sub">Loading System...</div>
     </div>
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        // Chỉ chặn trên desktop
+        if (!isMobile) {
+            // Chặn F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U, Ctrl+S
+            document.addEventListener('keydown', function(e) {
+                if (e.keyCode === 123 || 
+                    (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) ||
+                    (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83))) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // Chặn chuột phải
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+        }
     <script>
         var PRIVATE_CONFIG_KEY = "DShinee";  
         var PRIVATE_CONFIG_LINK = "shadowrocket://config/add/https://raw.githubusercontent.com/dungnguyen0537/Module/refs/heads/main/DShineeConfigUltra.conf";
