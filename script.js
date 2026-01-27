@@ -33,24 +33,11 @@ function init() {
     const wait = txtElement.getAttribute('data-wait');
     new TypeWriter(txtElement, words, wait);
 }
-
-// FIX LOAD NHANH: Dùng sự kiện DOMContentLoaded
-document.addEventListener('DOMContentLoaded', () => {
-    const loader = document.getElementById('preloader');
-    if (loader) {
-        // Tắt loading sau 1 khoảng cực ngắn để đảm bảo web đã render layout
-        setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => loader.style.display = 'none', 300);
-        }, 100); 
-    }
-});
-
-// Load tài nguyên nặng ngầm (Nhạc, Tuyết)
 window.addEventListener('load', () => {
     initAudio(); initSnow();
     const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add("visible"); }); }, { threshold: 0.2 });
     document.querySelectorAll("section").forEach(s => obs.observe(s));
+    setTimeout(() => { const loader = document.getElementById('preloader'); loader.style.opacity = '0'; setTimeout(()=> loader.style.display = 'none', 500); }, 500);
 });
 
 let curMode = null;
