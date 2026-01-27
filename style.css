@@ -23,16 +23,21 @@ body {
     padding-top: 0
 }
 
-/* --- HERO SECTION --- */
+/* --- HERO SECTION FIXED --- */
 .hero-landing {
     display: flex;
+    flex-direction: row; /* Bắt buộc hàng ngang trên Desktop */
+    flex-wrap: nowrap; /* Không cho phép xuống dòng trên Desktop */
     align-items: center;
     justify-content: space-between;
     padding: 60px 40px !important;
-    gap: 20px;
+    gap: 30px;
     min-height: 400px;
 }
-.hero-content { flex: 1.5; text-align: left; }
+.hero-content { 
+    flex: 1.5; 
+    text-align: left; 
+}
 .greeting { font-size: 1.5rem; color: var(--text-sub); font-weight: 500; display: block; margin-bottom: 5px; }
 .typing-container { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; min-height: 70px; }
 .txt-type {
@@ -43,9 +48,16 @@ body {
 @keyframes rainbow-anim { to { background-position: 200% center; } }
 .original-bio { font-size: 1.2rem; color: var(--text-sub); margin-bottom: 30px; }
 .social-links-hero { display: flex; gap: 15px; flex-wrap: wrap; }
-.hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
+
+.hero-image-box { 
+    flex: 1; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    min-width: 250px; /* Đảm bảo ảnh không bị bóp méo */
+}
 .avatar-glow {
-    width: 250px; height: 250px; padding: 6px; border-radius: 50%;
+    width: 280px; height: 280px; padding: 6px; border-radius: 50%;
     background: var(--gradient); box-shadow: 0 0 30px rgba(6,182,212,0.5);
     animation: pulse-avatar 3s infinite;
 }
@@ -56,29 +68,45 @@ body {
     100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); }
 }
 
-/* RESPONSIVE MOBILE FIX */
+/* RESPONSIVE MOBILE - Sửa layout đồng bộ ảnh */
 @media (max-width: 768px) {
     .hero-landing { 
-        flex-direction: column-reverse; /* Đảo ngược thứ tự: Ảnh lên trên, Chữ xuống dưới */
+        flex-direction: column-reverse; /* Đảo ngược: Ảnh lên trên, Chữ xuống dưới */
+        flex-wrap: wrap; /* Cho phép xuống dòng trên Mobile */
         text-align: center; 
         padding: 40px 20px !important;
-        justify-content: center; /* Căn giữa nội dung theo chiều dọc, tránh khoảng trống lớn */
-        gap: 30px; /* Tạo khoảng cách vừa phải giữa Ảnh và Chữ */
+        justify-content: center;
+        gap: 30px;
     }
-    .hero-content { text-align: center; }
+    .hero-content { text-align: center; flex: auto; width: 100%; }
     .social-links-hero { justify-content: center; }
     .typing-container { font-size: 2.2rem; min-height: auto; }
-    .avatar-glow { width: 180px; height: 180px; margin-bottom: 20px; }
+    
+    .hero-image-box { width: 100%; margin-bottom: 10px; }
+    .avatar-glow { width: 200px; height: 200px; }
 }
 
-/* --- SNOW CANVAS (Fix z-index để tuyết rơi phía trước) --- */
+/* --- SNOW CANVAS FIXED Z-INDEX --- */
 #snowCanvas { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    z-index: 9999; /* Đẩy lớp tuyết lên trên cùng */
-    pointer-events: none; /* Cho phép click xuyên qua tuyết */
+    z-index: 9999; /* Tuyết rơi đè lên mọi thứ */
+    pointer-events: none; 
 }
 
-/* --- RESTORED STYLES --- */
+/* --- PRELOADER --- */
+#preloader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a;
+    z-index: 99999; display: flex; flex-direction: column; justify-content: center;
+    align-items: center; transition: opacity 0.3s ease-out; /* Tăng tốc độ ẩn */
+}
+.loader-text {
+    color: #38bdf8; font-size: 1.2rem; letter-spacing: 3px; font-weight: bold;
+    animation: fade 1.5s infinite; margin-bottom: 10px; text-transform: uppercase
+}
+.loader-sub { color: #bae6fd; font-size: 0.8rem; opacity: 0.7 }
+@keyframes fade { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+/* --- OTHER STYLES (Keep Original) --- */
 #toast-msg {
     position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
     background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; padding: 12px 30px;
@@ -259,14 +287,3 @@ footer { text-align: center; padding: 40px; color: var(--text-sub); font-size: 0
     display: inline-block; transition: 0.3s; opacity: 0.7
 }
 .back-btn:hover { opacity: 1; color: var(--accent-cyan); transform: translateX(-3px) }
-#preloader {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0f172a;
-    z-index: 99999; display: flex; flex-direction: column; justify-content: center;
-    align-items: center; transition: 0.5s
-}
-.loader-text {
-    color: #38bdf8; font-size: 1.2rem; letter-spacing: 3px; font-weight: bold;
-    animation: fade 1.5s infinite; margin-bottom: 10px; text-transform: uppercase
-}
-.loader-sub { color: #bae6fd; font-size: 0.8rem; opacity: 0.7 }
-@keyframes fade { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
