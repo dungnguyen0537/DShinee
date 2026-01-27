@@ -33,11 +33,22 @@ function init() {
     const wait = txtElement.getAttribute('data-wait');
     new TypeWriter(txtElement, words, wait);
 }
+
+// FIX LOAD CHẬM: Dùng DOMContentLoaded để tắt loading ngay khi dựng xong HTML
+document.addEventListener("DOMContentLoaded", () => {
+    // Tắt loading ngay lập tức
+    const loader = document.getElementById('preloader');
+    if(loader) {
+        loader.style.opacity = '0';
+        setTimeout(()=> loader.style.display = 'none', 300); // Đợi hiệu ứng mờ tắt hẳn
+    }
+});
+
+// Vẫn giữ logic load tài nguyên nặng (nhạc, tuyết) ở background
 window.addEventListener('load', () => {
     initAudio(); initSnow();
     const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add("visible"); }); }, { threshold: 0.2 });
     document.querySelectorAll("section").forEach(s => obs.observe(s));
-    setTimeout(() => { const loader = document.getElementById('preloader'); loader.style.opacity = '0'; setTimeout(()=> loader.style.display = 'none', 500); }, 500);
 });
 
 let curMode = null;
