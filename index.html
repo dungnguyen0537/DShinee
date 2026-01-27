@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DShinee | Locket Gold</title>
+    <meta name="description" content="DShinee - Up Locket Gold Mới Nhất 2026 | Nhanh chóng, tiện lợi, đa dạng phương thức và hỗ trợ cho cả Iphone/Ipad và Android | Dịch vụ Uy Tín-Minh Bạch-Đáng Tin Cậy cùng chế độ Bảo hành/Hậu mãi tuyệt vời. Up Locket Gold ngay nào !!!">
+    <meta name="author" content="DShinee">
+    <meta name="keywords" content="DShinee, DShinee Profile, Locket Gold, Locket Gold 2026, Fullstack Developer, Database Designer, Dũng Nguyễn, LKG DShinee, Shadowrocket, Config, Thủ thuật iOS, Up Locket, Up Locket Gold Free, Up Locket Gold Vĩnh Viễn, Locket Gold Vĩnh Viễn, Locket Gold Shadowrocket, Locket Free, Locket Gold Miễn Phí, Up Locket Gold Bằng Username, Username Locket, Hà Nội, Việt Nam ">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="https://sf-static.upanhlaylink.com/img/image_20251215e9daf97bd6f701c3e0abbb4daeb76c2e.jpg" type="image/jpeg">
+</head>
+<body>
+    <div id="preloader" class="loader-box">
+        <div class="loader-text">Loading System...</div>
+        <div class="loader-sub">Design By DShinee...</div>
+    </div>
+
+    <div id="toast-msg"></div>
+    <canvas id="snowCanvas"></canvas>
+
+    <div class="fixed-menu">
+        <div class="hamburger-btn" onclick="toggleMenu(event)">
+            <i class="fas fa-bars"></i>
+        </div>
+        <div class="nav-dropdown" id="navDropdown">
+            <a href="#home" onclick="scrollToSection('home')">Home</a>
+            <a href="#dns-setup" onclick="scrollToSection('dns-setup')">Locket Gold</a>
+            <a href="#contact" onclick="scrollToSection('contact')">Contact</a>
+            <a href="#donate" onclick="scrollToSection('donate')">Donate</a>
+            <a href="#skills" onclick="scrollToSection('skills')">Skills</a>
+            <a href="#playlist" onclick="scrollToSection('playlist')">Playlist</a>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <section id="home" class="hero-landing glass-card visible">
+            <div class="hero-content">
+                <span class="greeting">Hi, I'm</span>
+                <h1 class="typing-container">
+                    <span class="txt-type" data-wait="2000" data-words='["DShinee"]'></span>
+                </h1>
+                
+                <p class="original-bio">Fullstack Developer & Database Designer</p>
+                
+                <div class="social-links-hero">
+                    <a href="https://www.facebook.com/dn.12th7" target="_blank" class="social-btn" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="https://open.spotify.com/user/312v3zei2oe5futdbqlvx4tujlli?si=6uBEvcIvQP22cJLk5kFcCQ" target="_blank" class="social-btn" title="Spotify">
+                        <i class="fab fa-spotify"></i>
+                    </a>
+                    <a href="https://locket.camera/links/rXf6HpKBU3c4czw57" target="_blank" class="social-btn" title="Locket">
+                        <i class="fas fa-heart"></i>
+                    </a>
+                    <a href="https://www.tiktok.com/@hihihehe_123hihi" target="_blank" class="social-btn" title="TikTok">
+                        <i class="fab fa-tiktok"></i>
+                    </a>
+                    <a href="https://instagram.com//dn_12th7" target="_blank" class="social-btn" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://github.com/dungnguyen0537" target="_blank" class="social-btn" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-image-box">
+                <div class="avatar-glow">
+                    <img src="https://sf-static.upanhlaylink.com/img/image_20251215e9daf97bd6f701c3e0abbb4daeb76c2e.jpg" alt="DShinee Avatar" class="avatar-img">
+                </div>
+            </div>
+        </section>
+
+        <section id="dns-setup" class="glass-card">
+            <h2 class="section-title">Locket Gold - DShinee</h2>
+            
+            <div id="deviceSelection" style="display:flex;flex-direction:column;align-items:center;gap:15px">
+                <p style="color:var(--text-sub);text-align:center">Vui lòng chọn thiết bị hoặc phương thức</p>
+                <div style="display:flex;gap:15px;flex-wrap:wrap;justify-content:center">
+                    <div class="install-btn btn-effect" onclick="initKeyCheck('ios')" style="padding:15px 30px;flex-direction:column;gap:10px">
+                        <i class="fab fa-apple" style="font-size:2rem"></i> Thiết bị IOS
+                    </div>
+                    <div class="install-btn btn-effect" style="padding:15px 30px;flex-direction:column;gap:10px;background:linear-gradient(135deg,#3ddc84 0%,#21ad5c 100%)" onclick="initKeyCheck('android')">
+                        <i class="fab fa-android" style="font-size:2rem"></i> Thiết bị Android
+                    </div>
+                    <div class="install-btn btn-effect" style="padding:15px 30px;flex-direction:column;gap:10px;background:linear-gradient(135deg,#a855f7 0%,#ec4899 100%)" onclick="showUsernameInput()">
+                        <i class="fas fa-user-plus" style="font-size:2rem"></i> Up Locket Gold Bằng Username
+                    </div>
+                </div>
+            </div>
+
+            <div id="usernameFlow" style="display:none">
+                <span class="back-btn" onclick="resetSelection()"><i class="fas fa-arrow-left"></i> Quay lại</span>
+                <div style="text-align:center">
+                    <h3 style="color:var(--text-main);margin-bottom:15px">Locket Gold Version New 2026</h3>
+                    <p style="color:var(--text-sub);font-size:0.9rem;margin-bottom:15px">Up Locket Gold chỉ với 15 giây.</p>
+                    <input type="text" id="locketUsername" class="key-input" placeholder="Nhập Username Locket..." style="max-width:300px;margin:0 auto 15px">
+                    <br>
+                    <div class="install-btn" onclick="submitLocketUsername()"><i class="fas fa-paper-plane"></i> Xác nhận</div>
+                    <p id="submitStatus" style="margin-top:15px;font-size:0.9rem"></p>
+                </div>
+            </div>
+
+            <div id="iosFlow" style="display:none">
+                <span class="back-btn" onclick="resetSelection()"><i class="fas fa-arrow-left"></i> Quay lại</span>
+                <div id="iosStep1" style="text-align:center">
+                    <p style="color:var(--text-sub);margin-bottom:15px">✦ IOS DNS Setup ✦</p>
+                    <div class="install-btn" onclick="onStartIOS()"><i class="fas fa-download"></i> Cài đặt ngay</div>
+                </div>
+                <div id="dnsVideoStage" style="display:none">
+                    <div class="video-wrapper"><iframe id="dnsIframe" style="width:100%;height:200px" frameborder="0" allow="autoplay"></iframe></div>
+                    <div class="install-btn" style="margin-top:15px" onclick="onFinishDNSVideo()">Đã xem xong</div>
+                </div>
+                <div id="addConfigStage" style="display:none">
+                    <h3 style="color:var(--text-main);margin-bottom:15px">Thêm Config Locket Gold</h3>
+                    <div style="display:flex;gap:15px;justify-content:center;flex-wrap:wrap">
+                        <div class="install-btn" onclick="onAddPublicConfig()">Config Public</div>
+                        <div class="install-btn" style="background:linear-gradient(135deg,#f59e0b 0%,#d97706 100%)" onclick="initKeyCheck('private_config')">Config Private</div>
+                    </div>
+                </div>
+                <div id="srVideoStage" style="display:none">
+                    <div class="video-wrapper"><iframe id="srIframe" style="width:100%;height:200px" frameborder="0" allow="autoplay"></iframe></div>
+                    <div class="install-btn" style="margin-top:15px" onclick="resetSelection()">Hoàn thành</div>
+                </div>
+            </div>
+
+            <div id="androidFlow" style="display:none;text-align:center">
+                <span class="back-btn" onclick="resetSelection()" style="display:block;text-align:left"><i class="fas fa-arrow-left"></i> Quay lại</span>
+                <p style="color:var(--text-sub);margin-bottom:20px">✦ Android Locket Gold ✦</p>
+                <a id="androidFinalBtn" href="#" class="install-btn" style="background:linear-gradient(135deg,#3ddc84 0%,#21ad5c 100%)">
+                    <i class="fab fa-android"></i> Cài đặt Locket Gold Android
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="glass-card">
+            <h2 class="section-title">Contact & Support</h2>
+            <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px">
+                <p style="color:var(--text-sub);font-size:0.95rem;line-height:1.5">Bạn gặp sự cố khi cài đặt hoặc muốn mua Key?<br>Kết nối với mình qua các kênh dưới đây.</p>
+                <div style="display:flex;gap:15px;flex-wrap:wrap;justify-content:center">
+                    <a href="https://m.me/dn.12th7" target="_blank" class="install-btn btn-effect" style="background:linear-gradient(135deg,#0084FF 0%,#00DF9A 100%)">
+                        <i class="fab fa-facebook-messenger"></i> Messenger
+                    </a>
+                    <a href="https://zalo.me/0833685262" target="_blank" class="install-btn btn-effect" style="background:linear-gradient(135deg,#0068FF 0%,#00B4FB 100%)">
+                        <i class="fas fa-comment-dots"></i> Zalo Support
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="donate" class="glass-card">
+            <h2 class="section-title">Donate - Support Me</h2>
+            <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:15px">
+                <p style="color:var(--text-sub);font-size:0.95rem">Nếu bạn cảm thấy dự án hữu ích, hãy mời mình một ly cafe nhé! ☕</p>
+                <div id="donateBtnBox">
+                    <div class="install-btn" onclick="toggleDonate()"><i class="fas fa-coffee"></i> Donate</div>
+                </div>
+                <div id="donateArea">
+                    <div class="qr-card">
+                        <img id="qrImage" src="https://sf-static.upanhlaylink.com/img/image_2025122250facdb705f6d3dc657195e21be30052.jpg" alt="Mã QR Donate" class="qr-img">
+                        <div class="bank-info">
+                            <div class="bank-item">Ngân hàng: <b>MB BANK</b></div>
+                            <div class="bank-item">Chủ TK: <b>NGUYEN VAN DUNG</b></div>
+                            <div class="bank-item">Số TK: <b>83865888888</b></div>
+                        </div>
+                        <button class="install-btn sm" onclick="downloadQR()">
+                            <i class="fas fa-share-square"></i> Lưu / Chia sẻ QR
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="glass-card">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <span class="skill-tag">HTML5 / CSS3</span>
+                <span class="skill-tag">JavaScript (ES6+)</span>
+                <span class="skill-tag">Next.js / React</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Database Design</span>
+                <span class="skill-tag">Git / Github</span>
+            </div>
+        </section>
+
+        <section id="playlist" class="glass-card">
+            <h2 class="section-title">My Playlist</h2>
+            <div class="music-player">
+                <div class="disk" id="disk"></div>
+                <div class="player-info">
+                    <div class="song-info">
+                        <h3 id="songTitle">Loading...</h3>
+                        <p id="songArtist">Loading...</p>
+                    </div>
+                    <div class="progress-container" id="progressContainer">
+                        <div class="progress-bar" id="progressBar"></div>
+                    </div>
+                    <div class="time-box">
+                        <span id="currTime">0:00</span>
+                        <span id="durTime">0:00</span>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button class="control-btn" id="playBtn">
+                        <i class="fas fa-play" id="playIcon"></i>
+                    </button>
+                    <button class="control-btn secondary" id="nextBtn">
+                        <i class="fas fa-forward"></i>
+                    </button>
+                </div>
+                <audio id="audio"></audio>
+            </div>
+        </section>
+
+        <footer style="text-align: center; padding: 40px;">
+            <p>© 2026 Design By DShinee.</p>
+        </footer>
+    </div>
+
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="glass-card modal-content">
+            <h3>Xác thực hệ thống</h3>
+            <input type="text" id="licenseKey" class="key-input" placeholder="Nhập Key Install...">
+            <div class="modal-btn-group">
+                <button class="modal-btn btn-cancel" onclick="closeKeyModal()">Hủy</button>
+                <button class="modal-btn btn-confirm" onclick="verifyLicenseKey()">Xác nhận</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script src="script.js"></script>
+</body>
+</html>
