@@ -1,11 +1,9 @@
-/* === CONFIGURATION === */
 var PRIVATE_CONFIG_KEY = "DShinee";  
 var VALID_KEYS = ["DShinee_2025", "Quinnhu", "Lamoanh"];
 var PRIVATE_CONFIG_LINK = "shadowrocket://config/add/https://raw.githubusercontent.com/dungnguyen0537/Module/refs/heads/main/LKG_HNhung_ByDShinee.sgmodule";
 var GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwQwdBT3veelsiIcFQwuwX4byCFsB4IRqCrMcLVs0h83rhe9rn6IBp9YAXEQ0Mf8EgFng/exec";
 const DNS_VID = "CqWbxsWmLtQ";
 const SR_VID = "9BQdGlMAw-k";
-
 const TypeWriter = function(txtElement, words, wait = 3000) {
     this.txtElement = txtElement;
     this.words = words;
@@ -25,7 +23,6 @@ TypeWriter.prototype.type = function() {
     if(!this.isDeleting && this.txt === fullTxt) { typeSpeed = this.wait; this.isDeleting = true; this.txtElement.style.borderRight = 'none'; } else if(this.isDeleting && this.txt === '') { this.isDeleting = false; this.wordIndex++; typeSpeed = 500; this.txtElement.style.borderRight = '0.1em solid #06b6d4'; }
     setTimeout(() => this.type(), typeSpeed);
 }
-
 document.addEventListener('DOMContentLoaded', init);
 function init() {
     const txtElement = document.querySelector('.txt-type');
@@ -39,7 +36,6 @@ window.addEventListener('load', () => {
     document.querySelectorAll("section").forEach(s => obs.observe(s));
     setTimeout(() => { const loader = document.getElementById('preloader'); loader.style.opacity = '0'; setTimeout(()=> loader.style.display = 'none', 500); }, 500);
 });
-
 let curMode = null;
 function showToast(m, isSuccess = false) {
     const t = document.getElementById("toast-msg");
@@ -47,7 +43,6 @@ function showToast(m, isSuccess = false) {
     t.className = isSuccess ? "success show" : "show";
     setTimeout(() => t.classList.remove("show"), 3000);
 }
-
 function initKeyCheck(m) { curMode = m; document.getElementById("modalOverlay").style.display = "flex"; document.getElementById("licenseKey").value = ""; }
 function closeKeyModal() { document.getElementById("modalOverlay").style.display = "none"; }
 function verifyLicenseKey() {
@@ -83,16 +78,12 @@ function onStartIOS() { window.location.href = "DNSByDShinee.mobileconfig"; setT
 function onFinishDNSVideo() { document.getElementById("dnsVideoStage").style.display = "none"; document.getElementById("addConfigStage").style.display = "block"; }
 function onAddPublicConfig() { window.location.href = "shadowrocket://config/add/https://raw.githubusercontent.com/dungnguyen0537/Module/refs/heads/main/Locket_ByDungNguyen.sgmodule"; onFinishConfigStep(); }
 function onFinishConfigStep() { setTimeout(() => { document.getElementById("addConfigStage").style.display = "none"; document.getElementById("srVideoStage").style.display = "block"; document.getElementById("srIframe").src = `https://www.youtube.com/embed/${SR_VID}?autoplay=1`; }, 1000); }
-
 function toggleDonate() { const d = document.getElementById('donateArea'); d.style.display = (d.style.display === 'block') ? 'none' : 'block'; if(d.style.display === 'block') d.scrollIntoView({behavior:'smooth', block:'center'}); }
 function toggleMenu(e) { if (e) e.stopPropagation(); const d = document.getElementById('navDropdown'); d.classList.toggle('active'); }
 document.addEventListener('click', function(e) { const menu = document.getElementById('navDropdown'); const btn = document.querySelector('.hamburger-btn'); if (menu.classList.contains('active') && !menu.contains(e.target) && !btn.contains(e.target)) { menu.classList.remove('active'); } });
 function scrollToSection(id) { const e = document.getElementById(id); if(e) { e.scrollIntoView({behavior:'smooth', block:'center'}); document.getElementById('navDropdown').classList.remove('active'); } }
 async function downloadQR() { const img = document.getElementById('qrImage'); try { const res = await fetch(img.src); const blob = await res.blob(); const file = new File([blob], 'QR.jpg', {type: blob.type}); if(navigator.canShare && navigator.canShare({files:[file]})) await navigator.share({files:[file]}); else { const a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='QR.jpg'; a.click(); } } catch(e) { window.open(img.src, '_blank'); } }
-
-const pl = [ { title: "Không Buông Drill", artist: "Hngle x Ari", src: "https://files.catbox.moe/9adi9p.mp3" },
-    { title: "Em", artist: "Binz", src: "https://files.catbox.moe/vs0z1h.mp3" },
-    { title: "Anh Đã Lớn Hơn Thế Nhiều", artist: "Dick", src: "https://files.catbox.moe/w9l7gb.mp3" } ];
+const pl = [ { title: "Không Buông Drill", artist: "Hngle x Ari", src: "https://files.catbox.moe/9adi9p.mp3" }, { title: "Em", artist: "Binz", src: "https://files.catbox.moe/vs0z1h.mp3" }, { title: "Anh Đã Lớn Hơn Thế Nhiều", artist: "Dick", src: "https://files.catbox.moe/w9l7gb.mp3" } ];
 let audio, isP = false, idx = -1;
 function initAudio() {
     audio = document.getElementById('audio'); loadSong(0);
@@ -107,3 +98,31 @@ function playS() { audio.play(); isP=true; document.getElementById('disk').style
 function pauseS() { audio.pause(); isP=false; document.getElementById('disk').style.animationPlayState='paused'; document.getElementById('playIcon').className='fas fa-play'; }
 function fmt(s) { const m=Math.floor(s/60), s2=Math.floor(s%60); return `${m}:${s2<10?'0'+s2:s2}`; }
 function initSnow() { const c = document.getElementById("snowCanvas"), t = c.getContext("2d"); let w, h, p = []; function r() { w = window.innerWidth; h = window.innerHeight; c.width = w; c.height = h; } class S { constructor() { this.reset(); this.y = Math.random() * h; } reset() { this.x = Math.random() * w; this.y = -10; this.speed = Math.random() * 1.5 + 0.5; this.size = Math.random() * 2 + 1; this.opacity = Math.random() * 0.5 + 0.2; this.sway = Math.random() * 0.02 - 0.01; this.angle = Math.random() * Math.PI * 2; } update() { this.y += this.speed; this.angle += 0.02; this.x += Math.sin(this.angle) * 0.5 + this.sway; if (this.y > h) this.reset(); } draw() { t.beginPath(); t.arc(this.x, this.y, this.size, 0, 2 * Math.PI); t.fillStyle = `rgba(255, 255, 255, ${this.opacity})`; t.fill(); } } window.addEventListener("resize", r); r(); for (let i = 0; i < 80; i++) p.push(new S()); (function a() { t.clearRect(0, 0, w, h); p.forEach(s => { s.update(); s.draw(); }); requestAnimationFrame(a); })(); }
+(function() {
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        showToast("Hành động bị chặn để bảo vệ bản quyền!");
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            showToast("DevTools đã bị vô hiệu hóa!");
+            return false;
+        }
+        if (e.ctrlKey && e.shiftKey && (e.keyCode === 73 || e.keyCode === 74 || e.keyCode === 67)) {
+            e.preventDefault();
+            showToast("Phím tắt này đã bị chặn!");
+            return false;
+        }
+        if (e.ctrlKey && (e.keyCode === 85 || e.keyCode === 83)) {
+            e.preventDefault();
+            showToast("Bạn không thể thực hiện hành động này!");
+            return false;
+        }
+    });
+    setInterval(function() {
+        if (window.outerHeight - window.innerHeight > 200 || window.outerWidth - window.innerWidth > 200) {
+            document.body.innerHTML = "<div style='display:flex;justify-content:center;align-items:center;height:100vh;color:#38bdf8;font-family:sans-serif;text-align:center;padding:20px;'>Vui lòng không can thiệp vào mã nguồn của hệ thống!</div>";
+        }
+    }, 1000);
+})();
