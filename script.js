@@ -34,17 +34,19 @@ function init() {
     new TypeWriter(txtElement, words, wait);
 }
 
-// FIX LOAD CHẬM: Dùng DOMContentLoaded để tắt loading ngay khi dựng xong HTML
-document.addEventListener("DOMContentLoaded", () => {
-    // Tắt loading ngay lập tức
+// FIX LOAD NHANH: Dùng sự kiện DOMContentLoaded
+document.addEventListener('DOMContentLoaded', () => {
     const loader = document.getElementById('preloader');
-    if(loader) {
-        loader.style.opacity = '0';
-        setTimeout(()=> loader.style.display = 'none', 300); // Đợi hiệu ứng mờ tắt hẳn
+    if (loader) {
+        // Tắt loading sau 1 khoảng cực ngắn để đảm bảo web đã render layout
+        setTimeout(() => {
+            loader.style.opacity = '0';
+            setTimeout(() => loader.style.display = 'none', 300);
+        }, 100); 
     }
 });
 
-// Vẫn giữ logic load tài nguyên nặng (nhạc, tuyết) ở background
+// Load tài nguyên nặng ngầm (Nhạc, Tuyết)
 window.addEventListener('load', () => {
     initAudio(); initSnow();
     const obs = new IntersectionObserver(e => { e.forEach(x => { if (x.isIntersecting) x.target.classList.add("visible"); }); }, { threshold: 0.2 });
