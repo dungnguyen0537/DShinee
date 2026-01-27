@@ -21,7 +21,7 @@ TypeWriter.prototype.type = function() {
     if(this.isDeleting) { this.txt = fullTxt.substring(0, this.txt.length - 1); } else { this.txt = fullTxt.substring(0, this.txt.length + 1); }
     this.txtElement.innerHTML = this.txt;
     let typeSpeed = 150;
-    if(this.isDeleting) typeSpeed /= 1;
+    if(this.isDeleting) typeSpeed /= 3;
     if(!this.isDeleting && this.txt === fullTxt) { typeSpeed = this.wait; this.isDeleting = true; this.txtElement.style.borderRight = 'none'; } else if(this.isDeleting && this.txt === '') { this.isDeleting = false; this.wordIndex++; typeSpeed = 500; this.txtElement.style.borderRight = '0.1em solid #06b6d4'; }
     setTimeout(() => this.type(), typeSpeed);
 }
