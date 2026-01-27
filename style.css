@@ -44,53 +44,41 @@ body {
 .original-bio { font-size: 1.2rem; color: var(--text-sub); margin-bottom: 30px; }
 .social-links-hero { display: flex; gap: 15px; flex-wrap: wrap; }
 .hero-image-box { flex: 1; display: flex; justify-content: center; align-items: center; }
-
-/* Avatar Glow - Đồng bộ giao diện (Vòng tròn gradient) */
 .avatar-glow {
-    width: 280px; height: 280px; 
-    padding: 5px; /* Tạo khoảng cách cho vòng viền gradient */
-    border-radius: 50%;
-    background: var(--gradient); /* Viền Gradient như ảnh */
-    box-shadow: 0 0 30px rgba(6,182,212,0.4);
+    width: 250px; height: 250px; padding: 6px; border-radius: 50%;
+    background: var(--gradient); box-shadow: 0 0 30px rgba(6,182,212,0.5);
     animation: pulse-avatar 3s infinite;
 }
-.avatar-img { 
-    width: 100%; height: 100%; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 4px solid var(--bg-color); /* Tạo khoảng hở giữa ảnh và viền gradient */
-}
-
+.avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 5px solid var(--bg-color); }
 @keyframes pulse-avatar {
     0% { box-shadow: 0 0 0 0 rgba(6,182,212,0.4); }
     70% { box-shadow: 0 0 0 20px rgba(6,182,212,0); }
     100% { box-shadow: 0 0 0 0 rgba(6,182,212,0); }
 }
 
-/* RESPONSIVE MOBILE - Đồng bộ bố cục như ảnh Mobile */
+/* RESPONSIVE MOBILE FIX */
 @media (max-width: 768px) {
     .hero-landing { 
-        flex-direction: column-reverse; /* Đảo ngược: Ảnh lên trên, Chữ xuống dưới */
+        flex-direction: column-reverse; /* Đảo ngược thứ tự: Ảnh lên trên, Chữ xuống dưới */
         text-align: center; 
-        padding: 40px 20px !important; 
+        padding: 40px 20px !important;
+        justify-content: center; /* Căn giữa nội dung theo chiều dọc, tránh khoảng trống lớn */
+        gap: 30px; /* Tạo khoảng cách vừa phải giữa Ảnh và Chữ */
     }
     .hero-content { text-align: center; }
     .social-links-hero { justify-content: center; }
     .typing-container { font-size: 2.2rem; min-height: auto; }
-    .avatar-glow { 
-        width: 200px; height: 200px; 
-        margin-bottom: 20px; 
-    }
+    .avatar-glow { width: 180px; height: 180px; margin-bottom: 20px; }
 }
 
-/* --- SNOW CANVAS (Sửa z-index để tuyết rơi phía trước) --- */
+/* --- SNOW CANVAS (Fix z-index để tuyết rơi phía trước) --- */
 #snowCanvas { 
     position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    z-index: 9999; /* Đẩy lên lớp trên cùng */
+    z-index: 9999; /* Đẩy lớp tuyết lên trên cùng */
     pointer-events: none; /* Cho phép click xuyên qua tuyết */
 }
 
-/* --- CÁC PHẦN CÒN LẠI GIỮ NGUYÊN --- */
+/* --- RESTORED STYLES --- */
 #toast-msg {
     position: fixed; top: -100px; left: 50%; transform: translateX(-50%);
     background: linear-gradient(135deg, #ef4444, #b91c1c); color: white; padding: 12px 30px;
